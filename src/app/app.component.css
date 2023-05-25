@@ -1,0 +1,9 @@
+.content {
+  top: 130px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: #ffffff;
+  color: #000000;
+}
