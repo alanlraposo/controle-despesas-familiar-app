@@ -25,3 +25,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Prototipo projeto - Figma
+
+Prototipo do projeto (https://www.figma.com/file/FyELaTIw6npx7NW0wm5kun/controle-despesas-familiar-app?type=design&t=sE6yitzXy1zdugv3-1)

@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-
+  tituloCabecalho = "Controle de despesas familiar";
+  classCssHeader = "header";
+  classCssHeaderLogo = "header-logo";
+  classCssHeaderTitulo = "header-titulo";
 }
