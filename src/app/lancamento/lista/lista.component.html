@@ -1,0 +1,60 @@
+<div class="box">
+
+  <h4>Lançamentos</h4>
+
+  <p>
+    Adicionar novo lançamento:
+    <a class="waves-effect waves-light btn-small orange" (click)="adicionarLancamento()">
+      <i class="material-icons left">add</i>
+      Adicionar
+  </a>
+  </p>
+
+  <div class="box-tabela">
+    <table class="mat-elevation-z8 responsive-table">
+      <thead>
+        <tr>
+            <th>ID</th>
+            <th>USUÁRIO</th>
+            <th>TIPO</th>
+            <th>DESCRIÇÃO</th>
+            <th>VALOR</th>
+            <th>FORMA</th>
+            <th>AÇÃO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lancamento of lancamentos">
+          <td>
+            <app-item [lancamento]="lancamento"></app-item>
+          </td>
+          <td>
+            {{lancamento.usuario}}
+          </td>
+          <td>
+            {{lancamento.tipo}}
+          </td>
+          <td>
+            {{lancamento.descricao}}
+          </td>
+          <td>
+            {{lancamento.valor}}
+          </td>
+          <td>
+            {{lancamento.forma}}
+          </td>
+          <td>
+            <a class="waves-effect waves-light btn-small orange" style="margin-right: 10px !important" (click)="editarLancamento(lancamento)">
+              <i class="material-icons left">edit</i>
+              Editar
+            </a>
+            <a class="waves-effect waves-light btn-small orange" (click)="deletarLancamento(lancamento)">
+              <i class="material-icons left">remove</i>
+              Excluir
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
