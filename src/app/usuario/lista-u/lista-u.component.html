@@ -1,6 +1,6 @@
 <div class="box">
 
-  <h4>Lançamentos</h4>
+  <h4>Usuários</h4>
 
   <div class="col s12">
     <div
@@ -14,8 +14,8 @@
   </div>
 
   <div class="row right-align">
-    Adicionar novo lançamento:
-    <a class="waves-effect waves-light btn-small orange" (click)="adicionarLancamento()">
+    Adicionar novo usuário:
+    <a class="waves-effect waves-light btn-small orange" (click)="adicionarUsuario()">
       <i class="material-icons left">add</i>
       Adicionar
     </a>
@@ -27,39 +27,31 @@
         <tr>
             <th>ID</th>
             <th>USUÁRIO</th>
-            <th>TIPO</th>
+            <th>CPF</th>
             <th>DESCRIÇÃO</th>
-            <th>VALOR</th>
-            <th>FORMA</th>
             <th>AÇÃO</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let lancamento of lancamentos">
+        <tr *ngFor="let usuario of usuarios">
           <td>
-            <app-item [lancamento]="lancamento"></app-item>
+            #{{usuario.id}}
           </td>
           <td>
-            {{lancamento.usuario}}
+            {{usuario.nome}}
           </td>
           <td>
-            {{lancamento.tipo}}
+            {{usuario.cpf}}
           </td>
           <td>
-            {{lancamento.descricao}}
+            {{usuario.descricao}}
           </td>
           <td>
-            R$ {{lancamento.valor}}
-          </td>
-          <td>
-            {{lancamento.forma}}
-          </td>
-          <td>
-            <a class="waves-effect waves-light btn-small orange" style="margin-right: 10px !important" (click)="editarLancamento(lancamento)">
+            <a class="waves-effect waves-light btn-small orange" style="margin-right: 10px !important" (click)="editarUsuario(usuario)">
               <i class="material-icons left">edit</i>
               Editar
             </a>
-            <a class="waves-effect waves-light btn-small orange" (click)="deletarLancamento(lancamento)">
+            <a class="waves-effect waves-light btn-small orange" (click)="deletarUsuario(usuario)">
               <i class="material-icons left">clear</i>
               Excluir
             </a>

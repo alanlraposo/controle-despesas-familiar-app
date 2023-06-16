@@ -10,29 +10,23 @@
 }
 
 .header-logo {
+  background-image: url(../../assets/icone_cifrao_270_90.png);
+  background-repeat: no-repeat;
+  background-position: center;
   position: absolute;
-  width: 305px;
+  width: 270px;
   height: 90px;
   top: 0;
   left: 0;
-  padding: 22px 0 20px 20px;
-  border-radius: 0 50px 50px 0;
-  background: black;
-}
-
-.header-logo div {
-  font-size: 70px;
-  margin: 15px 0 0 -35px;
 }
 
 .header-titulo {
-  width: 65%;
+  width: 100%;
   font-size: 25px;
   font-weight: bold;
   float: left;
   padding: 38px 0 0 0;
   position: absolute;
-  margin: 0 0 0 325px;
 }
 
 .header-menu {

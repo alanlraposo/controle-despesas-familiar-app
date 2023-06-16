@@ -1,53 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild  } from '@angular/core';
 import { Data, Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
-export interface Lancamento {
-  id: number;
-  usuario: string;
-  tipo: string;
-  descricao: string;
-  valor: number;
-  forma: string;
-}
-
-const lancamentosInit: Lancamento[] = [
-  { id: 1, usuario: 'Alan Raposo', tipo: 'Entrada', descricao: 'Salario',  valor: 10000.00, forma: 'PIX' },
-  { id: 2, usuario: 'Alan Luiz', tipo: 'Saída', descricao: 'Carro Chevette Pneus', valor: 1000.00, forma: 'Dinheiro' },
-  { id: 3, usuario: 'Alan Raposo', tipo: 'Saída', descricao: 'Carro Caravan Escapamento', valor: 2000.00, forma: 'PIX' }
-];
+import { LancamentoStorageService } from '../lancamento-storage-service';
+import { Lancamento } from 'src/app/model/lancamento';
+import { Shared } from 'src/app/util/shared';
 
 @Component({
   selector: 'app-lista',
   templateUrl: './lista.component.html',
   styleUrls: ['./lista.component.css'],
+  providers: [ LancamentoStorageService ],
 })
 
 export class ListaComponent implements OnInit {
 
-  constructor(public router: Router) {
+  @ViewChild('form') form!: NgForm;
+
+  lancamentos?: Lancamento[];
+
+  isSubmitted!: boolean;
+  isShowMessage: boolean = false;
+  isSuccess!: boolean;
+  message!: string;
+
+  constructor(public router: Router, private lancamentoService: LancamentoStorageService) {
   }
 
-  lancamentos = lancamentosInit;
-
   ngOnInit(): void {
+    Shared.initializeWebStorage();
+    this.lancamentos = this.lancamentoService.getLancamentos();
   }
 
   adicionarLancamento() {
     this.router.navigate(['/lancamento/cadastro']);
   }
 
-  editarLancamento(lancamento: {id: any; usuario: any; tipo: any; descricao: any; valor: any; forma: any;}): void {
+  editarLancamento(lancamento: {id: number; usuario: any; tipo: any; descricao: any; valor: number; forma: any;}): void {
     this.router.navigate(['/lancamento/cadastro', lancamento.id, lancamento.usuario, lancamento.tipo, lancamento.descricao, lancamento.valor, lancamento.forma]);
   }
 
-  deletarLancamento(lancamento: {id: any; usuario: any; tipo: any; descricao: any; valor: any; forma: any;}): void {
-    let dialogo = confirm("Deseja realmente excluir o lançamento?");
+  deletarLancamento(lancamento: {id: number; usuario: any; tipo: any; descricao: any; valor: number; forma: any;}): void {
+    let dialogo = confirm("Deseja realmente excluir o lançamento #" + lancamento.id +"?");
     if (dialogo) {
-      for (let i = 0; i < this.lancamentos.length; i++) {
-        if (this.lancamentos[i].id == lancamento.id) {
-          this.lancamentos.splice(i, 1);
-        }
+      let response: boolean = this.lancamentoService.delete(lancamento);
+      this.isShowMessage = true;
+      this.isSuccess = response;
+      if (response) {
+        this.message = 'O lançamento foi excluido com sucesso!';
+      } else {
+        this.message = 'Erro ao excluior o lançamento!';
       }
+      this.lancamentos = this.lancamentoService.getLancamentos();
     }
   }
 }

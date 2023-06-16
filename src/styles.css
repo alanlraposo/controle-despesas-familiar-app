@@ -16,3 +16,28 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   padding-left: 30px;
   margin-bottom: 20px;
 }
+
+.box-cadastro b {
+  float: right;
+  margin-top: 17px;
+}
+
+h4 {
+  border-bottom: 1px solid black;
+}
+
+th, td {
+  text-align: center;
+}
+
+.row .col {
+  padding: 0 0 0 15px !important;
+}
+
+.card-panel {
+  transition: box-shadow .25s;
+  padding: 10px;
+  margin: 0.5rem 0 1rem 0;
+  border-radius: 2px;
+  background-color: #1c9112a8 !important;
+}
