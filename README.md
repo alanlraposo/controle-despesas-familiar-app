@@ -24,8 +24,8 @@ https://www.figma.com/file/FyELaTIw6npx7NW0wm5kun/controle-despesas-familiar-app
 - [x] Passar dados entre componentes que representam diferentes telas via parâmetros de rotas.
 - [x] Validar campos do formulário com REGEX e apresentar os erros.
 - [x] Desabilitar o botão de submit enquanto o formulário está inválido.
-- [ ] Fazer requisições a API com tratamento da resposta com Promises ou Observables.
-- [ ] Cadastrar uma entidade no JSON Server.
+- [X] Fazer requisições a API com tratamento da resposta com Promises ou Observables.
+- [X] Cadastrar uma entidade no JSON Server.
 - [x] Apresentar uma lista de dados com a diretiva estrutural ngFor.
 - [x] Usar a diretiva ngIf
 - [ ] Formatar a apresentação de dados com Pipes.

@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 
 import { Lancamento } from 'src/app/model/lancamento';
 import { LancamentoStorageService } from '../lancamento-storage-service';
+import { LancamentoService } from 'src/app/service/lancamento.service';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class CadastroComponent implements OnInit {
   isSuccess!: boolean;
   message!: string;
 
-  constructor(public route: ActivatedRoute, public router: Router, private lancamentoService: LancamentoStorageService) {
+  constructor(public route: ActivatedRoute, public router: Router, private _lancamentoService: LancamentoService) {
   }
 
   ngOnInit(): void {
@@ -42,7 +43,7 @@ export class CadastroComponent implements OnInit {
     if(this.lancamento.id != null){
       this.editar = true;
     } else {
-      this.lancamento.id = Math.floor((Math.random()*1000000)+1);
+      this.lancamento.id = new Date().getTime();
     }
   }
 
@@ -50,23 +51,67 @@ export class CadastroComponent implements OnInit {
     this.router.navigate(['/lancamento']);
   }
 
-  cadastrar() {
-    console.log("cadastrar");
-
-    this.lancamento = new Lancamento(this.lancamento.id, this.lancamento.usuario, this.lancamento.tipo, this.lancamento.descricao, this.lancamento.valor, this.lancamento.forma);
+  salvar() {
+    console.log("salvar");
 
     if(this.editar){
-      this.lancamentoService.update(this.lancamento);
-      this.message = 'Editado com sucesso!';
+
+      console.log("atualizar");
+      let self = this;
+      let myPromise = new Promise(function(myResolve, myReject) {
+          self._lancamentoService.update(self.lancamento.id, self.lancamento).subscribe(
+          lancamento => {
+            myResolve("OK");
+          },
+          err => {
+            myReject("Error");
+          }
+        );
+      });
+
+      myPromise.then(
+        function(value) {
+          self.isShowMessage = true;
+          self.isSuccess = true;
+          self.message = 'Atualizado com sucesso!';
+        },
+        function(error) {
+          self.isShowMessage = true;
+          self.isSuccess = false;
+          self.message = 'Erro ao atualizar o lançamento!';
+        }
+      );
+
     } else {
-      this.lancamentoService.save(this.lancamento);
-      this.message = 'Cadastro realizado com sucesso!';
+
+      console.log("cadastrar");
+      let self = this;
+      let myPromise = new Promise(function(myResolve, myReject) {
+        self._lancamentoService.save(self.lancamento).subscribe(
+          lancamento => {
+            myResolve("OK");
+          },
+          err => {
+            myReject("Error");
+          }
+        );
+      });
+
+      myPromise.then(
+        function(value) {
+          self.isShowMessage = true;
+          self.isSuccess = true;
+          self.message = 'Cadastrado com sucesso!';
+        },
+        function(error) {
+          self.isShowMessage = true;
+          self.isSuccess = false;
+          self.message = 'Erro ao cadastrar o lançamento!';
+        }
+      );
     }
 
-    this.isSubmitted = true;
-    this.isShowMessage = true;
-    this.isSuccess = true;
     this.form.reset();
-    this.lancamento.id = Math.floor((Math.random()*1000000)+1);
+    this.lancamento.id = new Date().getTime();
   }
 }

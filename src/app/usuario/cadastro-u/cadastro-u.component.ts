@@ -3,17 +3,13 @@ import { ActivatedRoute } from '@angular/router';
 import { Data, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
-
-import { UsuarioStorageService } from '../usuario-storage-service';
 import { Usuario } from 'src/app/model/usuario';
-import { DescricaoUsuario } from 'src/app/model/descricao-usuario';
-
+import { UsuarioService } from 'src/app/service/usuario.service';
 
 @Component({
   selector: 'app-cadastro-u',
   templateUrl: './cadastro-u.component.html',
   styleUrls: ['./cadastro-u.component.css'],
-  providers: [ UsuarioStorageService ],
 })
 
 export class CadastroUComponent implements OnInit {
@@ -29,9 +25,7 @@ export class CadastroUComponent implements OnInit {
   isSuccess!: boolean;
   message!: string;
 
-  //descricoes: DescricaoUsuario[] = [{descricao: 'Pai'}, {descricao: 'Mãe'}, {descricao: 'Filho/Filha'}];
-
-  constructor(public route: ActivatedRoute, public router: Router, private usuarioService: UsuarioStorageService) {
+  constructor(public route: ActivatedRoute, public router: Router, private _usuarioService: UsuarioService) {
   }
 
   ngOnInit(): void {
@@ -44,7 +38,7 @@ export class CadastroUComponent implements OnInit {
     if(this.usuario.id != null){
       this.editar = true;
     } else {
-      this.usuario.id = Math.floor((Math.random()*1000000)+1);
+      this.usuario.id = new Date().getTime();
     }
   }
 
@@ -52,24 +46,76 @@ export class CadastroUComponent implements OnInit {
     this.router.navigate(['/usuario']);
   }
 
-  cadastrar() {
-    console.log("cadastrar");
-
-    this.usuario = new Usuario(this.usuario.id, this.usuario.nome, this.usuario.cpf, this.usuario.descricao);
+  salvar() {
+    console.log("salvar");
 
     if(this.editar){
-      this.usuarioService.update(this.usuario);
-      this.message = 'Editado com sucesso!';
+
+      console.log("atualizar");
+      let self = this;
+      let myPromise = new Promise(function(myResolve, myReject) {
+          self._usuarioService.update(self.usuario.id, self.usuario).subscribe(
+          usuario => {
+            myResolve("OK");
+          },
+          err => {
+            myReject("Error");
+          }
+        );
+      });
+
+      myPromise.then(
+        function(value) {
+          self.isShowMessage = true;
+          self.isSuccess = true;
+          self.message = 'Atualizado com sucesso!';
+        },
+        function(error) {
+          self.isShowMessage = true;
+          self.isSuccess = false;
+          self.message = 'Erro ao atualizar o usuário!';
+        }
+      );
+
     } else {
-      this.usuarioService.save(this.usuario);
-      this.message = 'Cadastro realizado com sucesso!';
+
+      console.log("cadastrar");
+      let self = this;
+      let myPromise = new Promise(function(myResolve, myReject) {
+        self._usuarioService.save(self.usuario).subscribe(
+          receita => {
+            myResolve("OK");
+          },
+          err => {
+            myReject("Error");
+          }
+        );
+      });
+
+      myPromise.then(
+        function(value) {
+          self.isShowMessage = true;
+          self.isSuccess = true;
+          self.message = 'Cadastrado com sucesso!';
+        },
+        function(error) {
+          self.isShowMessage = true;
+          self.isSuccess = false;
+          self.message = 'Erro ao cadastrar o usuário!';
+        }
+      );
     }
 
-    this.isSubmitted = true;
-    this.isShowMessage = true;
-    this.isSuccess = true;
     this.form.reset();
-    this.usuario.id = Math.floor((Math.random()*1000000)+1);
+    this.usuario.id = new Date().getTime();
+  }
+
+  cadastrar(){
+
+  }
+
+  atualizar(){
+
   }
 }
 

@@ -1,0 +1,34 @@
+{
+  "usuario": [
+    {
+      "id": 1687526139235,
+      "nome": "Alan Raposo",
+      "cpf": "333.278.708-48",
+      "descricao": "Filho"
+    },
+    {
+      "id": 1687527151884,
+      "nome": "Alan Luiz",
+      "cpf": "344.278.708-48",
+      "descricao": "Pai"
+    }
+  ],
+  "lancamento": [
+    {
+      "id": 1687526050638,
+      "usuario": "Alan R",
+      "tipo": "Saída",
+      "descricao": "Sapato de Couro",
+      "valor": "10.100,00",
+      "forma": "Pix"
+    },
+    {
+      "id": 1687527132558,
+      "usuario": "Alan Raposo",
+      "tipo": "Entrada",
+      "descricao": "Sapato de Couro",
+      "valor": "10.100,00",
+      "forma": "Pix"
+    }
+  ]
+}
