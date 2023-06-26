@@ -29,6 +29,7 @@
             <th>USUÁRIO</th>
             <th>CPF</th>
             <th>DESCRIÇÃO</th>
+            <th>DATA CADASTRO</th>
             <th>AÇÃO</th>
         </tr>
       </thead>
@@ -47,13 +48,14 @@
             {{usuario.descricao}}
           </td>
           <td>
-            <a class="waves-effect waves-light btn-small orange" style="margin-right: 10px !important" (click)="editarUsuario(usuario)">
+            {{usuario.dataInclusao | date: 'dd/MM/yyyy HH:mm'}}
+          </td>
+          <td>
+            <a class="waves-effect waves-light btn-floating orange" style="margin-right: 10px !important" title="Editar" (click)="editarUsuario(usuario)">
               <i class="material-icons left">edit</i>
-              Editar
             </a>
-            <a class="waves-effect waves-light btn-small orange" (click)="deletarUsuario(usuario)">
+            <a class="waves-effect waves-light btn-floating orange" title="Excluir" (click)="deletarUsuario(usuario)">
               <i class="material-icons left">clear</i>
-              Excluir
             </a>
           </td>
         </tr>

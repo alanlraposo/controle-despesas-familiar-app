@@ -24,7 +24,6 @@
           name="input-id"
           type="text"
           [(ngModel)]="this.lancamento.id"
-          pattern=""
           #inputid="ngModel"
           required
           class="validate"
@@ -34,18 +33,19 @@
       <div class="row">
         <div class="col s2"><b>Usuário:</b></div>
         <div class="col s10">
-          <input
-            id="input-usuario"
-            name="input-usuario"
-            type="text"
+          <select
+            id="select-usuario"
+            name="select-usuario"
             [(ngModel)]="this.lancamento.usuario"
-            pattern=""
-            #inputusuario="ngModel"
+            #usuario="ngModel"
             required
-            class="validate"
-            placeholder="Nome do usuário"/>
+            class="validate">
+            <option *ngFor="let u of usuarioLancamentos" [ngValue]="u.usuario">
+              {{u.usuario}}
+            </option>
+          </select>
 
-          <div class="red-text" [hidden]="inputusuario.valid || inputusuario.untouched">
+          <div class="red-text" [hidden]="usuario.valid || usuario.untouched">
             Por favor, informe o nome do usário.
           </div>
         </div>
@@ -53,18 +53,18 @@
       <div class="row">
         <div class="col s2"><b>Tipo:</b></div>
         <div class="col s10">
-          <input
-            id="input-tipo"
-            name="input-tipo"
-            type="text"
+          <select
+            id="select-tipo"
+            name="select-tipo"
             [(ngModel)]="this.lancamento.tipo"
-            pattern="^(\s?[A-ZÀ-Ú][a-zà-ú]*)"
-            #inputtipo="ngModel"
+            #tipo="ngModel"
             required
-            class="validate"
-            placeholder="Entrada|Saída"/>
-
-          <div class="red-text" [hidden]="inputtipo.valid || inputtipo.untouched">
+            class="validate">
+            <option *ngFor="let t of tipoLancamentos" [ngValue]="t.tipo">
+              {{t.tipo}}
+            </option>
+          </select>
+          <div class="red-text" [hidden]="tipo.valid || tipo.untouched">
             Por favor, informe o tipo de lançamento.
           </div>
         </div>
@@ -89,13 +89,13 @@
         </div>
       </div>
       <div class="row">
-        <div class="col s2"><b>Valor:</b></div>
+        <div class="col s2"><b>Valor R$:</b></div>
         <div class="col s10">
           <input
             id="input-valor"
             name="input-valor"
             type="text"
-            [(ngModel)]="this.lancamento.valor"
+            [(ngModel)]="this.valorTela"
             pattern="^[1-9]\d{0,2}(\.\d{3})*,\d{2}$"
             #inputvalor="ngModel"
             required
@@ -110,18 +110,18 @@
       <div class="row">
         <div class="col s2"><b>Forma:</b></div>
         <div class="col s10">
-          <input
-            id="input-forma"
-            name="input-forma"
-            type="text"
+          <select
+            id="select-forma"
+            name="select-forma"
             [(ngModel)]="this.lancamento.forma"
-            pattern="^(\s?[A-ZÀ-Ú][a-zà-ú]*)"
-            #inputforma="ngModel"
+            #forma="ngModel"
             required
-            class="validate"
-            placeholder="PIX|Dinheiro|Transferência|Cartão"/>
-
-          <div class="red-text" [hidden]="inputforma.valid || inputforma.untouched">
+            class="validate">
+            <option *ngFor="let f of formaLancamentos" [ngValue]="f.forma">
+              {{f.forma}}
+            </option>
+          </select>
+          <div class="red-text" [hidden]="forma.valid || forma.untouched">
             Por favor, informe a forma de lançamento.
           </div>
         </div>

@@ -34,7 +34,7 @@ export class ListaUComponent implements OnInit {
         listaUsuarios => {
           self.usuarios = listaUsuarios.map(
             item=>{
-              return new Usuario(item.id, item.nome, item.cpf, item.descricao);
+              return new Usuario(item.id, item.nome, item.cpf, item.descricao, item.dataInclusao);
             }
           );
           myResolve("OK");
@@ -49,7 +49,7 @@ export class ListaUComponent implements OnInit {
         console.log("Sucesso ao coletar dados da API");
       },
       function(error) {
-        console.log("Erro ao coletar a lista de receitas da API!")
+        console.log("Erro ao coletar a lista de usuários da API!")
       }
     );
   }
@@ -58,11 +58,11 @@ export class ListaUComponent implements OnInit {
     this.router.navigate(['/usuario/cadastro']);
   }
 
-  editarUsuario(usuario: {id: number; nome: any; cpf: any; descricao: any;}): void {
-    this.router.navigate(['/usuario/cadastro', usuario.id, usuario.nome, usuario.cpf, usuario.descricao]);
+  editarUsuario(usuario: {id: number; nome: any; cpf: any; descricao: any; dataInclusao: number}): void {
+    this.router.navigate(['/usuario/cadastro', usuario.id, usuario.nome, usuario.cpf, usuario.descricao, usuario.dataInclusao]);
   }
 
-  deletarUsuario(usuario: {id: number; nome: any; cpf: any; descricao: any; }) : void {
+  deletarUsuario(usuario: {id: number; nome: any; cpf: any; descricao: any; dataInclusao: number}) : void {
     let dialogo = confirm("Deseja realmente excluir o usuário #" + usuario.id +"?");
     if (dialogo) {
       let self = this;

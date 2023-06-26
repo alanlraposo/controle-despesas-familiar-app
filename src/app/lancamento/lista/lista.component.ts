@@ -37,7 +37,7 @@ export class ListaComponent implements OnInit {
         listaLancamentos => {
           self.lancamentos = listaLancamentos.map(
             item=>{
-              return new Lancamento(item.id, item.usuario, item.tipo, item.descricao, item.valor, item.forma);
+              return new Lancamento(item.id, item.usuario, item.tipo, item.descricao, item.valor, item.forma, item.dataInclusao);
             }
           );
           myResolve("OK");
@@ -52,7 +52,7 @@ export class ListaComponent implements OnInit {
         console.log("Sucesso ao coletar dados da API");
       },
       function(error) {
-        console.log("Erro ao coletar a lista de receitas da API!")
+        console.log("Erro ao coletar a lista de lançamentos da API!")
       }
     );
   }
@@ -61,11 +61,11 @@ export class ListaComponent implements OnInit {
     this.router.navigate(['/lancamento/cadastro']);
   }
 
-  editarLancamento(lancamento: {id: number; usuario: any; tipo: any; descricao: any; valor: number; forma: any;}): void {
-    this.router.navigate(['/lancamento/cadastro', lancamento.id, lancamento.usuario, lancamento.tipo, lancamento.descricao, lancamento.valor, lancamento.forma]);
+  editarLancamento(lancamento: {id: number; usuario: any; tipo: any; descricao: any; valor: number; forma: any; dataInclusao: number}): void {
+    this.router.navigate(['/lancamento/cadastro', lancamento.id, lancamento.usuario, lancamento.tipo, lancamento.descricao, lancamento.valor, lancamento.forma, lancamento.dataInclusao]);
   }
 
-  deletarLancamento(lancamento: {id: number; usuario: any; tipo: any; descricao: any; valor: number; forma: any;}): void {
+  deletarLancamento(lancamento: {id: number; usuario: any; tipo: any; descricao: any; valor: number; forma: any; dataInclusao: number}): void {
     let dialogo = confirm("Deseja realmente excluir o lançamento #" + lancamento.id +"?");
     if (dialogo) {
       let self = this;

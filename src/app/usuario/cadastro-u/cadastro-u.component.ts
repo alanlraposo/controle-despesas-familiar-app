@@ -3,13 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Data, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
+
 import { Usuario } from 'src/app/model/usuario';
 import { UsuarioService } from 'src/app/service/usuario.service';
-
+import { DescricaoUsuario } from 'src/app/model/descricao-usuario';
 @Component({
   selector: 'app-cadastro-u',
   templateUrl: './cadastro-u.component.html',
-  styleUrls: ['./cadastro-u.component.css'],
+  styleUrls: ['./cadastro-u.component.css']
 })
 
 export class CadastroUComponent implements OnInit {
@@ -25,20 +26,28 @@ export class CadastroUComponent implements OnInit {
   isSuccess!: boolean;
   message!: string;
 
+  descricaoUsuarios: DescricaoUsuario[] = [
+    {descricao: 'Pai'},
+    {descricao: 'Mãe'},
+    {descricao: 'Filho'},
+  ];
+
   constructor(public route: ActivatedRoute, public router: Router, private _usuarioService: UsuarioService) {
   }
 
   ngOnInit(): void {
-    this.usuario = new Usuario(0, '', '', '');
+    this.usuario = new Usuario(0, '', '', '', 0);
     this.usuario.id = this.route.snapshot.params['id'];
     this.usuario.nome = this.route.snapshot.params['nome'];
     this.usuario.cpf = this.route.snapshot.params['cpf'];
     this.usuario.descricao = this.route.snapshot.params['descricao'];
+    this.usuario.dataInclusao = this.route.snapshot.params['dataInclusao'];
 
     if(this.usuario.id != null){
       this.editar = true;
     } else {
       this.usuario.id = new Date().getTime();
+      this.usuario.dataInclusao = new Date().getTime();
     }
   }
 
@@ -107,7 +116,9 @@ export class CadastroUComponent implements OnInit {
     }
 
     this.form.reset();
+    this.editar = false;
     this.usuario.id = new Date().getTime();
+    this.usuario.dataInclusao = new Date().getTime();
   }
 
   cadastrar(){

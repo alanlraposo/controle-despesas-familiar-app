@@ -22,12 +22,12 @@ const routes: Routes = [
   //LANCAMENTO
   { path:'lancamento', component: ListaComponent },
   { path:'lancamento/cadastro', component: CadastroComponent },
-  { path:'lancamento/cadastro/:id/:usuario/:tipo/:descricao/:valor/:forma', component: CadastroComponent },
+  { path:'lancamento/cadastro/:id/:usuario/:tipo/:descricao/:valor/:forma/:dataInclusao', component: CadastroComponent },
 
   //USUARIO
   { path:'usuario', component: ListaUComponent },
   { path:'usuario/cadastro', component: CadastroUComponent },
-  { path:'usuario/cadastro/:id/:nome/:cpf/:descricao', component: CadastroUComponent },
+  { path:'usuario/cadastro/:id/:nome/:cpf/:descricao/:dataInclusao', component: CadastroUComponent },
 
   //PAGINA NAO ENCONTRADA
   { path:'**', pathMatch:'full',  component: PagenotfoundComponent },

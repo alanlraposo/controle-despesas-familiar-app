@@ -69,21 +69,22 @@
           </div>
         </div>
       </div>
+
       <div class="row">
         <div class="col s2"><b>Descrição:</b></div>
         <div class="col s10">
-          <input
-            id="input-descricao"
-            name="input-descricao"
-            type="text"
+          <select
+            id="select-descricao"
+            name="select-descricao"
             [(ngModel)]="this.usuario.descricao"
-            pattern="^(\s?[A-ZÀ-Ú][a-zà-ú]*)"
-            #inputdescricao="ngModel"
+            #descricao="ngModel"
             required
-            class="validate"
-            placeholder="Pai|Filho|Mãe"/>
-
-          <div class="red-text" [hidden]="inputdescricao.valid || inputdescricao.untouched">
+            class="validate">
+            <option *ngFor="let d of descricaoUsuarios" [ngValue]="d.descricao">
+              {{d.descricao}}
+            </option>
+          </select>
+          <div class="red-text" [hidden]="descricao.valid || descricao.untouched">
             Por favor, informe a descrição.
           </div>
         </div>
