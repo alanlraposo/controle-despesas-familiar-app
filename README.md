@@ -2,9 +2,13 @@
 
 Esta aplicação tem o intuito de auxiliar a família no controle financeiro. Permitindo entrada e saída de dados (CRUD), através de uma console simples e intuitiva. O usuário também poderá visualizar os lançamentos (extrato).
 
-## Endereço de Deploy - GitHub Pages
+## Endereço de Deploy - GitHub Repositorio
 
 https://github.com/alanlraposo/controle-despesas-familiar-app
+
+## Endereço da aplicação - GitHub-Pages
+
+https://alanlraposo.github.io/controle-despesas-familiar-app
 
 ## Protótipo
 
@@ -29,7 +33,7 @@ https://www.figma.com/file/FyELaTIw6npx7NW0wm5kun/controle-despesas-familiar-app
 - [x] Apresentar uma lista de dados com a diretiva estrutural ngFor.
 - [x] Usar a diretiva ngIf
 - [x] Formatar a apresentação de dados com Pipes.
-- [ ] Build e deploy da aplicação.
+- [X] Build e deploy da aplicação.
 
 ## Manual de execução
 - Clonar o repositório com `git clone`
