@@ -1,0 +1,74 @@
+<div class="box">
+
+  <h4>Lançamentos</h4>
+
+  <div class="col s12">
+    <div
+      id="msg-lista"
+      class="card-panel white-text"
+      [class.red]="!this.isSuccess"
+      [class.blue]="this.isSuccess"
+      *ngIf="this.isShowMessage" >
+      {{ this.message }}
+    </div>
+  </div>
+
+  <div class="row right-align">
+    Adicionar novo lançamento:
+    <a class="waves-effect waves-light btn-small orange" (click)="adicionarLancamento()">
+      <i class="material-icons left">add</i>
+      Adicionar
+    </a>
+  </div>
+
+  <div class="box-tabela">
+    <table class="mat-elevation-z8 responsive-table">
+      <thead>
+        <tr>
+            <th>ID</th>
+            <th>USUÁRIO</th>
+            <th>TIPO</th>
+            <th>DESCRIÇÃO</th>
+            <th>VALOR</th>
+            <th>FORMA</th>
+            <th>DATA CADASTRO</th>
+            <th>AÇÃO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lancamento of lancamentos">
+          <td>
+            <app-item [lancamento]="lancamento"></app-item>
+          </td>
+          <td>
+            {{lancamento.usuario}}
+          </td>
+          <td>
+            <span *ngIf="lancamento.tipo == 'Entrada'" ngClass="entrada">{{lancamento.tipo | uppercase}}</span>
+            <span *ngIf="lancamento.tipo == 'Saída'" ngClass="saida">{{lancamento.tipo | uppercase}}</span>
+          </td>
+          <td>
+            {{lancamento.descricao}}
+          </td>
+          <td>
+            {{lancamento.valor | currency}}
+          </td>
+          <td>
+            {{lancamento.forma}}
+          </td>
+          <td>
+            {{lancamento.dataInclusao | date: 'dd/MM/yyyy HH:mm'}}
+          </td>
+          <td>
+            <a class="waves-effect waves-light btn-floating orange" style="margin-right: 10px !important" title="Editar" (click)="editarLancamento(lancamento)">
+              <i class="material-icons left">edit</i>
+            </a>
+            <a class="waves-effect waves-light btn-floating orange" title="Excluir" (click)="deletarLancamento(lancamento)">
+              <i class="material-icons left">clear</i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

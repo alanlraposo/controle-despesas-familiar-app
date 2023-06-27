@@ -1,0 +1,54 @@
+{
+  "usuario": [
+    {
+      "id": 1687552200545,
+      "nome": "Heloísa Raposo",
+      "cpf": "333.278.708-48",
+      "descricao": "Filho",
+      "dataInclusao": 1687552200545
+    },
+    {
+      "id": 1687788023861,
+      "nome": "Estefani Domingues",
+      "cpf": "111.222.333-44",
+      "descricao": "Mãe",
+      "dataInclusao": 1687788023861
+    },
+    {
+      "id": 1687806288404,
+      "nome": "Alan Raposo",
+      "cpf": "344.278.708-48",
+      "descricao": "Pai",
+      "dataInclusao": 1687806288404
+    }
+  ],
+  "lancamento": [
+    {
+      "id": 1687806338356,
+      "usuario": "Alan Raposo",
+      "tipo": "Entrada",
+      "descricao": "Salario Pj",
+      "valor": 10000,
+      "forma": "Pix",
+      "dataInclusao": 1687806338356
+    },
+    {
+      "id": 1687806370305,
+      "usuario": "Estefani Domingues",
+      "tipo": "Saída",
+      "descricao": "Sapato de Couro",
+      "valor": 100,
+      "forma": "Pix",
+      "dataInclusao": 1687806370305
+    },
+    {
+      "id": 1687806383281,
+      "usuario": "Heloísa Raposo",
+      "tipo": "Saída",
+      "descricao": "Ursinho de Pelúcia",
+      "valor": 25.99,
+      "forma": "Dinheiro",
+      "dataInclusao": 1687806383281
+    }
+  ]
+}

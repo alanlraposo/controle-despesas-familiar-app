@@ -1,0 +1,31 @@
+<div [class]="classCssHeader">
+
+  <div [class]="classCssHeaderLogo"></div>
+
+  <div [class]="classCssHeaderTitulo">{{ tituloCabecalho }}</div>
+
+  <nav>
+    <div class="nav-wrapper">
+      <ul class="left hide-on-med-and-down menu-desktop" >
+        <li>
+          <a routerLink="/">
+            <i class="tiny material-icons">home</i>
+            <span class="desc-home">Home</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/lancamento">
+            <i class="tiny material-icons">attach_money</i>
+            <span class="desc-lancamento">Lançamentos</span>
+          </a>
+        </li>
+        <li>
+          <a routerLink="/usuario">
+            <i class="tiny material-icons">person</i>
+            <span class="desc-usuario">Usuários</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>

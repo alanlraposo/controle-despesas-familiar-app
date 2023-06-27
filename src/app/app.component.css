@@ -1,0 +1,11 @@
+.content {
+  top: 130px;
+  left: 0;
+  bottom: 80px;
+  width: 100%;
+  position: fixed;
+  background: #ffffff;
+  color: #000000;
+  overflow-y: auto;
+}
+

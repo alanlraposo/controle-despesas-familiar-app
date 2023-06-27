@@ -1,0 +1,94 @@
+@import "~materialize-css/dist/css/materialize.css";
+@import "~material-icons/iconfont/material-icons.css";
+
+/* You can add global styles to this file, and also import other style files */
+body {
+  font-family: Verdana, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.box {
+  width: 940px;
+  padding-left: 30px;
+  margin-bottom: 20px;
+}
+
+.box-cadastro b {
+  float: right;
+  margin-top: 17px;
+}
+
+h4 {
+  border-bottom: 1px solid black;
+}
+
+th, td {
+  text-align: center;
+}
+
+.row .col {
+  padding: 0 0 0 15px !important;
+}
+
+.card-panel {
+  transition: box-shadow .25s;
+  padding: 10px;
+  margin: 0.5rem 0 1rem 0;
+  border-radius: 2px;
+  background-color: #1c9112a8 !important;
+}
+
+select {
+  display: inline !important;
+  border-bottom: 1px solid #9e9e9e;
+  font-size: 16px;
+}
+
+@media only screen and (max-width: 992px){
+  .hide-on-med-and-down {
+    display: block !important;
+  }
+
+  .box {
+    width: 95%;
+  }
+}
+
+@media only screen and (max-width: 900px){
+  .header-titulo {
+    margin-left: 10%;
+  }
+}
+
+@media only screen and (max-width: 800px){
+  .header-titulo {
+    margin-left: 20%;
+  }
+}
+
+@media only screen and (max-width: 650px){
+  .header-titulo {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 400px){
+  .menu-desktop {
+    margin-left: 23%;
+  }
+
+  .desc-home, .desc-lancamento, .desc-usuario {
+    display: none;
+    margin-left: 10%;
+  }
+}
+
+@media only screen and (max-width: 320px){
+  .menu-desktop {
+    margin-left: 15%;
+  }
+}

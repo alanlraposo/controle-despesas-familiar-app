@@ -1,0 +1,65 @@
+<div class="box">
+
+  <h4>Usuários</h4>
+
+  <div class="col s12">
+    <div
+      id="msg-lista"
+      class="card-panel white-text"
+      [class.red]="!this.isSuccess"
+      [class.blue]="this.isSuccess"
+      *ngIf="this.isShowMessage" >
+      {{ this.message }}
+    </div>
+  </div>
+
+  <div class="row right-align">
+    Adicionar novo usuário:
+    <a class="waves-effect waves-light btn-small orange" (click)="adicionarUsuario()">
+      <i class="material-icons left">add</i>
+      Adicionar
+    </a>
+  </div>
+
+  <div class="box-tabela">
+    <table class="mat-elevation-z8 responsive-table">
+      <thead>
+        <tr>
+            <th>ID</th>
+            <th>USUÁRIO</th>
+            <th>CPF</th>
+            <th>DESCRIÇÃO</th>
+            <th>DATA CADASTRO</th>
+            <th>AÇÃO</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>
+            #{{usuario.id}}
+          </td>
+          <td>
+            {{usuario.nome}}
+          </td>
+          <td>
+            {{usuario.cpf}}
+          </td>
+          <td>
+            {{usuario.descricao}}
+          </td>
+          <td>
+            {{usuario.dataInclusao | date: 'dd/MM/yyyy HH:mm'}}
+          </td>
+          <td>
+            <a class="waves-effect waves-light btn-floating orange" style="margin-right: 10px !important" title="Editar" (click)="editarUsuario(usuario)">
+              <i class="material-icons left">edit</i>
+            </a>
+            <a class="waves-effect waves-light btn-floating orange" title="Excluir" (click)="deletarUsuario(usuario)">
+              <i class="material-icons left">clear</i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
